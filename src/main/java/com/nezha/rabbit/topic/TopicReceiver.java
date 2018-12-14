@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Created by nezha on 2017/4/29.
  */
 @Component
-@RabbitListener(queues = "topic.message")
+@RabbitListener(queues = "nezha-topic-a")
 public class TopicReceiver {
 
     @RabbitHandler

@@ -20,6 +20,8 @@ public class TopicTest {
     @Test
     public void topic() throws Exception {
         sender.send();
+        sender.send1();
+        sender.send2();
     }
 
     @Test

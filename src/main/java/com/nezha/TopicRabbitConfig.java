@@ -12,30 +12,28 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class TopicRabbitConfig {
-    final static String message = "topic.message";
-    final static String messages = "topic.messages";
     @Bean
-    public Queue queueMessage() {
-        return new Queue(TopicRabbitConfig.message);
+    public Queue queueA() {
+        return new Queue("nezha-topic-a");
     }
 
     @Bean
-    public Queue queueMessages() {
-        return new Queue(TopicRabbitConfig.messages);
+    public Queue queueB() {
+        return new Queue("nezha-topic-b");
     }
 
     @Bean
     TopicExchange exchange() {
-        return new TopicExchange("topicExchange");
+        return new TopicExchange("nezha-topicExchange");
     }
 
     @Bean
-    Binding bindingExchangeMessage(Queue queueMessage, TopicExchange exchange) {
-        return BindingBuilder.bind(queueMessage).to(exchange).with("topic.message");
+    Binding bindingExchangeMessage(Queue queueA, TopicExchange exchange) {
+        return BindingBuilder.bind(queueA).to(exchange).with("class.math");
     }
 
     @Bean
-    Binding bindingExchangeMessages(Queue queueMessages, TopicExchange exchange) {
-        return BindingBuilder.bind(queueMessages).to(exchange).with("topic.#");
+    Binding bindingExchangeMessages(Queue queueB, TopicExchange exchange) {
+        return BindingBuilder.bind(queueB).to(exchange).with("class.#");
     }
 }
